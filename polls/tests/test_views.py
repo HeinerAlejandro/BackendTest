@@ -9,6 +9,7 @@ class TestPollViewSet(APITestCase):
         self.__polls = [
             {
                 'email': 'heiner.enis@gmail.com',
+                'gender': 'male',
                 'age': '18-25',
                 'favorite_social_network': 'facebook',
                 'time_facebook_avg': 2.5,
@@ -19,6 +20,7 @@ class TestPollViewSet(APITestCase):
             },
             {
                 'email': 'heiner.enis@gmail.com',
+                'gender': 'male',
                 'age': '20',
                 'favorite_social_network': 'Bumble',
                 'time_facebook_avg': 2.5,
@@ -26,6 +28,17 @@ class TestPollViewSet(APITestCase):
                 'time_twitter_avg': 0.8,
                 'time_instagram_avg': 1,
                 'time_tiktok_avg': 0.4
+            },
+            {
+                'email': 'other.person@gmail.com',
+                'gender': 'male',
+                'age': '40+',
+                'favorite_social_network': 'whatsapp',
+                'time_facebook_avg': 5.5,
+                'time_whatsapp_avg': 8.3,
+                'time_twitter_avg': 9.8,
+                'time_instagram_avg': 1,
+                'time_tiktok_avg': 0.8
             }
         ]
 
@@ -61,4 +74,16 @@ class TestPollViewSet(APITestCase):
         self.assertIn('email', keys_response)
         self.assertIn('age', keys_response)
         self.assertIn('favorite_social_network', keys_response)
+
+    def test_get_polls_success(self):
+        url = reverse('polls-list')
+
+        self.__consume_api_create('polls-list', 0)
+        self.__consume_api_create('polls-list', 2)
+
+        response = self.client.get(url)
+
+        self.assertEquals(response.status_code, status.HTTP_200_OK)
+
+        self.assertEquals(len(response.data), 2)
 
