@@ -19,10 +19,16 @@ Activa virtualenv en el proyecto clonado e installa las dependencias de requirem
     #luego dirigiete a la carpeta del requirements.txt
     # en la base del proyecto e instala las dependencias
     
-    cd <path_root_proyect> && pip install -r requirements.txt
+    cd <path_root_project> && pip install -r requirements.txt
 ```
 
 ### Comenzando 📋
+
+Ejecutar migraciones(El proyecto usa SQLite por lo que no es necesario adaptar cualquier otra BD):
+
+```shell
+    python manage.py makemigrations
+```
 
 Iniciar Servidor:
 
