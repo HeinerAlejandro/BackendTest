@@ -87,3 +87,13 @@ class TestPollViewSet(APITestCase):
 
         self.assertEquals(len(response.data), 2)
 
+    def test_most_used_sn_per_age_success(self):
+
+        url = reverse('polls-most-used-sn-per-age')
+
+        self.__consume_api_create('polls-list', 0)
+        self.__consume_api_create('polls-list', 2)
+
+        response = self.client.get(url)
+
+        self.assertEquals(response.status_code, status.HTTP_200_OK)
