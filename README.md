@@ -24,6 +24,12 @@ Activa virtualenv en el proyecto clonado e installa las dependencias de requirem
 
 ### Comenzando 📋
 
+Ejecutar migraciones(El proyecto usa SQLite por lo que no es necesario adaptar cualquier otra BD):
+
+```shell
+    python manage.py makemigrations
+```
+
 Iniciar Servidor:
 
 ```shell
